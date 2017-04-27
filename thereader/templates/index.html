@@ -1,1 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Reader</title>
+</head>
+<body>
 <h1>Home</h1>
+<form action="" method="POST">
+  {% csrf_token %}
+  <textarea name="" cols="30" rows="10" required></textarea>
+  <input type="submit" value="음성으로 변환">
+</form>
+</body>
+</html>
