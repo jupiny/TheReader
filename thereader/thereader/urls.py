@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from .views import home
+from .views import home, make_mp3_file_view
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
+    url(r'^mp3-file/$', make_mp3_file_view, name='make_mp3_file'),
 ]

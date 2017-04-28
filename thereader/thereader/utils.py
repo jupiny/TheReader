@@ -6,8 +6,8 @@ import urllib.request
 def make_mp3_file(text, speaker, speed):
     enc_text = urllib.parse.quote(text)
     data = "speaker={speaker}&speed={speed}&text={text}".format(
-                speaker='mijin',
-                speed='0',
+                speaker=speaker,
+                speed=speed,
                 text=enc_text,
             )
     url = "https://openapi.naver.com/v1/voice/tts.bin"
@@ -19,7 +19,7 @@ def make_mp3_file(text, speaker, speed):
     if(rescode == 200):
         print("TTS mp3 저장")
         response_body = response.read()
-        with open('1111.mp3', 'wb') as f:
+        with open('dist/media/voice.mp3', 'wb') as f:
             f.write(response_body)
     else:
         print("Error Code:" + rescode)
