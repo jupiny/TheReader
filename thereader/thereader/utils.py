@@ -1,6 +1,7 @@
 import os
 import sys
 import urllib.request
+import datetime
 
 
 def make_mp3_file(text, speaker, speed):
@@ -19,7 +20,30 @@ def make_mp3_file(text, speaker, speed):
     if(rescode == 200):
         print("TTS mp3 저장")
         response_body = response.read()
-        with open('dist/media/voice.mp3', 'wb') as f:
+        media_dir = os.path.join('dist', 'media')
+        remove_startwith_file(media_dir, 'voice')
+        filename = set_filename_format('voice.mp3')
+        newfile= os.path.join(media_dir, filename)
+        with open(newfile, 'wb') as f:
             f.write(response_body)
+        return filename
     else:
         print("Error Code:" + rescode)
+
+
+def set_filename_format(filename):
+    now = datetime.datetime.now()
+    return "{filename}_{year}{month}{day}{microsecond}{extension}".format(
+        filename=os.path.splitext(filename)[0],
+        year =now.year,
+        month =now.month,
+        day =now.day,
+        microsecond=now.microsecond,
+        extension=os.path.splitext(filename)[1],
+    )
+
+
+def remove_startwith_file(directory, startwith_name):
+    for fname in os.listdir(directory):
+        if fname.startswith(startwith_name):
+            os.remove(os.path.join(directory, fname))
