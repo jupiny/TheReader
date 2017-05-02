@@ -11,18 +11,18 @@
   <div>
     <label for="">성별</label>
     <select name="speaker">
-      <option value="mijin">여자</option>
-      <option value="jinho">남자</option>
+        <option value="mijin" {% if not speaker or speaker == "mijin" %}selected="selected"{% endif %}>여자</option>
+      <option value="jinho" {% if speaker == "jinho" %}selected="selected"{% endif %}>남자</option>
     </select>
   </div>
   <div>
     <label for="">속도</label>
     <select name="speed">
-      <option value="5">느리게</option>
-      <option value="2.5">조금 느리게</option>
-      <option value="0">보통</option>
-      <option value="-2.5">조금 빠르게</option>
-      <option value="-5">빠르게</option>
+      <option value="5" {% if speed == "5" %}selected="selected"{% endif %}>느리게</option>
+      <option value="2.5" {% if speed == "2.5" %}selected="selected"{% endif %}>조금 느리게</option>
+      <option value="0" {% if not speed or speed == "0" %}selected="selected"{% endif %}>보통</option>
+      <option value="-2.5" {% if speed == "-2.5" %}selected="selected"{% endif %}>조금 빠르게</option>
+      <option value="-5" {% if speed == "-5" %}selected="selected"{% endif %}>빠르게</option>
     </select>
   <div>
   <div>
@@ -30,8 +30,10 @@
     <input type="submit" value="음성으로 변환">
   <div>
 </form>
+{% if filename %}
 <audio controls autoplay>
-  <source src="/media/voice.mp3" type="audio/mpeg">
+  <source src="/media/{{ filename }}" type="audio/mpeg">
 </audio>
+{% endif %}
 </body>
 </html>
