@@ -8,8 +8,27 @@
 <h1>Home</h1>
 <form action="{% url "make_mp3_file" %}" method="POST">
   {% csrf_token %}
-  <textarea name="text" cols="30" rows="10" required>{{ text }}</textarea>
-  <input type="submit" value="음성으로 변환">
+  <div>
+    <label for="">성별</label>
+    <select name="speaker">
+      <option value="mijin">여자</option>
+      <option value="jinho">남자</option>
+    </select>
+  </div>
+  <div>
+    <label for="">속도</label>
+    <select name="speed">
+      <option value="5">느리게</option>
+      <option value="2.5">조금 느리게</option>
+      <option value="0">보통</option>
+      <option value="-2.5">조금 빠르게</option>
+      <option value="-5">빠르게</option>
+    </select>
+  <div>
+  <div>
+    <textarea name="text" cols="30" rows="10" placeholder="텍스트를 입력하세요" required>{{ text }}</textarea>
+    <input type="submit" value="음성으로 변환">
+  <div>
 </form>
 <audio controls autoplay>
   <source src="/media/voice.mp3" type="audio/mpeg">

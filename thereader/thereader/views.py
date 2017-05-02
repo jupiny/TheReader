@@ -17,5 +17,7 @@ def home(request):
 def make_mp3_file_view(request):
     if request.method == 'POST':
         text = request.POST['text']
-        make_mp3_file(text, 'mijin', 0)
+        speaker = request.POST['speaker']
+        speed = request.POST['speed']
+        make_mp3_file(text, speaker, speed)
         return redirect('home')
