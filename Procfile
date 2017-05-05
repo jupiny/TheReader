@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath thereader/ --bind :8000 thereader.wsgi --log-file -
+web: gunicorn --pythonpath thereader/ thereader.wsgi --log-file -
