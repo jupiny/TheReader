@@ -21,6 +21,8 @@ def make_mp3_file(text, speaker, speed):
         print("TTS mp3 저장")
         response_body = response.read()
         media_dir = os.path.join('dist', 'media')
+        if not os.path.exists(media_dir):
+            os.makedirs(media_dir)
         remove_startwith_file(media_dir, 'voice')
         filename = set_filename_format('voice.mp3')
         newfile= os.path.join(media_dir, filename)
