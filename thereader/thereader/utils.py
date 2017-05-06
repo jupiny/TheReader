@@ -24,6 +24,7 @@ def make_mp3_file(text, speaker, speed):
         response_body = response.read()
         print('Response 데이터 읽음')
         media_dir = settings.MEDIA_ROOT
+        print('media_dir : ' +  media_dir)
         if not os.path.exists(media_dir):
             os.makedirs(media_dir)
             print('media 폴더 생성')
@@ -31,8 +32,10 @@ def make_mp3_file(text, speaker, speed):
         print('voice.mp3 파일 제거')
         filename = set_filename_format('voice.mp3')
         newfile= os.path.join(media_dir, filename)
+        print('newfile : ' +  newfile)
         with open(newfile, 'wb') as f:
             f.write(response_body)
+            print('mp3 파일 저장')
         return filename
     else:
         print("Error Code:" + rescode)
