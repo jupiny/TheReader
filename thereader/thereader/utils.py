@@ -3,6 +3,8 @@ import sys
 import urllib.request
 import datetime
 
+from django.conf import settings
+
 
 def make_mp3_file(text, speaker, speed):
     enc_text = urllib.parse.quote(text)
@@ -20,10 +22,13 @@ def make_mp3_file(text, speaker, speed):
     if(rescode == 200):
         print("TTS mp3 저장")
         response_body = response.read()
-        media_dir = os.path.join('dist', 'media')
+        print('Response 데이터 읽음')
+        media_dir = settings.MEDIA_ROOT
         if not os.path.exists(media_dir):
             os.makedirs(media_dir)
+            print('media 폴더 생성')
         remove_startwith_file(media_dir, 'voice')
+        print('voice.mp3 파일 제거')
         filename = set_filename_format('voice.mp3')
         newfile= os.path.join(media_dir, filename)
         with open(newfile, 'wb') as f:
